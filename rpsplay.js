@@ -9,7 +9,11 @@ function getComputerChoice() {
     //generate a randon number between 1 and 3, inclusive.
     const num = Math.floor(Math.random() * 100)%3;
 
-    return [playSelect[num], num];
+    //prompt user
+    userPlay = prompt();
+    computerPlay = playSelect[num];
+
+    return [computerPlay, num, userPlay ];
 
 }
 
