@@ -11,6 +11,7 @@ function getComputerChoice() {
 
     
     let computerPlay = playSelect[num];
+    
 
     return computerPlay;
 
@@ -23,5 +24,25 @@ function playRound(userPlay, computerPlay) {
 const computerPlay = getComputerChoice();
 //prompt user
 const userPlay = prompt().toUpperCase();
+let gameResult = "DRAW!";
 
-console.log(playRound(userPlay, computerPlay) );
+if (userPlay === "ROCK") {
+    if (computerPlay === "SCISSORS")
+        gameResult = "User WINS!";
+    else if (computerPlay === "PAPER") 
+        gameResult = "Computer WINS!";
+}
+if (userPlay === "PAPER") {
+    if (computerPlay === "SCISSORS")
+        gameResult = "Computer WINS!";
+    else if (computerPlay === "ROCK") 
+        gameResult = "User WINS!";
+}
+if (userPlay === "SCISSORS") {
+    if (computerPlay === "ROCK")
+        gameResult = "Computer WINS!";
+    else if (computerPlay === "PAPER") 
+        gameResult = "User WINS!";
+}
+
+console.log([...playRound(userPlay, computerPlay), gameResult]);
