@@ -1,4 +1,6 @@
 
+let cscore = 0;
+let pscore = 0;
 
 function getComputerChoice() {
 
@@ -15,32 +17,79 @@ function getComputerChoice() {
 
 function playRound(userPlay, computerPlay) {
     
-    let gameResult = "DRAW!";
+    let gameResult = "DRAWN GAME!";
 
     if (userPlay === "ROCK") {
-        if (computerPlay === "SCISSORS")
+        if (computerPlay === "SCISSORS") {
             gameResult = "User WINS!";
-        else if (computerPlay === "PAPER") 
+            pscore++;
+        }
+        else if (computerPlay === "PAPER") {
             gameResult = "Computer WINS!";
+            cscore++;
+        }
     }
+
     if (userPlay === "PAPER") {
-        if (computerPlay === "SCISSORS")
+        if (computerPlay === "SCISSORS") {
             gameResult = "Computer WINS!";
-        else if (computerPlay === "ROCK") 
+            cscore++;
+        }
+        else if (computerPlay === "ROCK") {
             gameResult = "User WINS!";
+            pscore++;
+        }
     }
     if (userPlay === "SCISSORS") {
-        if (computerPlay === "ROCK")
+        if (computerPlay === "ROCK") {
             gameResult = "Computer WINS!";
-        else if (computerPlay === "PAPER") 
+            cscore++;
+        }
+        else if (computerPlay === "PAPER") {
             gameResult = "User WINS!";
+            pscore++;
+        }
     }
-    return [userPlay, computerPlay, gameResult]
+    return ("User plays: "+userPlay + ": Computer plays: " +computerPlay +" " + " --> " + gameResult);
 }
 
-let userPlay = "ROCK";
-const computerPlay = getComputerChoice();
+
+
 //prompt user
 //const userPlay = prompt().toUpperCase();
 
-console.log(playRound(userPlay, computerPlay));
+function game() {
+    let computerPlay;
+    let userPlay; 
+    let i = 0;
+
+    while (i <5) {
+    
+    computerPlay = getComputerChoice();
+    userPlay = prompt().toUpperCase();
+
+    console.log("GAME " + (i+1));
+    console.log(playRound(userPlay, computerPlay));
+    console.log(`SCORE: User - ${pscore},  Computer - ${cscore}`);
+    i++;
+    }
+
+    let result;
+    if (pscore >  cscore)
+        result = "USER WINS! " + pscore + " games to " + cscore +"."; 
+    else if (cscore > pscore) 
+        result = "COMPUTER WINS! " + cscore + " games to " + pscore +".";
+
+    else if (pscore ===1) 
+        result = "MATCH IS DRAWN! " + pscore + " GAME EACH.";
+    else
+        result = "MATCH IS DRAWN! " + pscore + " GAMES EACH.";
+ 
+
+    console.log("   ");
+    console.log("MATCH COMPLETE!");
+    console.log(result);
+    }
+
+
+game();
