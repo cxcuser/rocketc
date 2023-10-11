@@ -19,7 +19,32 @@ function playRound(userPlay, computerPlay) {
     
     let gameResult = "DRAWN GAME!";
 
-    if (userPlay === "ROCK") {
+    let rSeq = ['PAPER', 'ROCK', 'SCISSORS'];
+    let pSeq = ['SCISSORS', 'PAPER', 'ROCK'];
+    let sSeq = ['ROCK', 'SCISSORS', 'PAPER'];
+
+    if (userPlay === 'ROCK') {
+        inptest(rSeq, computerPlay);
+    }
+    else if (userPlay === 'PAPER') {
+        inptest(pSeq, computerPlay);
+    }
+    else  {
+        inptest(sSeq, computerPlay);
+    }
+
+    function inptest(seq, inp) {
+        if (inp === seq[0]) {
+            gameResult = "Computer WINS!";
+            pscore++;
+        }
+        else if (inp === seq[2]) {
+            gameResult = "User WINS!";
+            cscore++;
+        }
+        else {}
+    }
+  /*  if (userPlay === "ROCK") {
         if (computerPlay === "SCISSORS") {
             gameResult = "User WINS!";
             pscore++;
@@ -50,6 +75,7 @@ function playRound(userPlay, computerPlay) {
             pscore++;
         }
     }
+    */
     return ("User plays: "+userPlay + ": Computer plays: " +computerPlay +" " + " --> " + gameResult);
 }
 
