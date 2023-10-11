@@ -2,6 +2,29 @@
 let cscore = 0;
 let pscore = 0;
 
+let table = document.querySelector('table');
+let buttons = document.querySelectorAll('button');
+
+for (let button of buttons) {
+    button.addEventListener('click', ()=> {
+        let row = document.createElement('tr');
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+
+        td1.textContent = "col1";
+        td2.textContent = "col1";
+        td3.textContent = "col1";
+
+        table.appendChild(row);
+
+    })
+}
+
 function getComputerChoice() {
 
     //create an array for choices of play
@@ -92,7 +115,8 @@ function game() {
     while (i <5) {
     
     computerPlay = getComputerChoice();
-    userPlay = prompt().toUpperCase();
+    /*userPlay = prompt().toUpperCase();*/
+    userPlay = "ROCK";
 
     console.log("GAME " + (i+1));
     console.log(playRound(userPlay, computerPlay));
