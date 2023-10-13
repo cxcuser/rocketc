@@ -1,13 +1,13 @@
 
 let cscore = 0;
 let pscore = 0;
+let i = 1;
 
 let table = document.querySelector('table');
 let buttons = document.querySelectorAll('button');
 
-for (let button of buttons) {
-    button.addEventListener('click', ()=> {
-        let row = document.createElement('tr');
+function makerow(){
+    let row = document.createElement('tr');
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
         let td3 = document.createElement('td');
@@ -22,7 +22,52 @@ for (let button of buttons) {
 
         table.appendChild(row);
 
+}
+
+for (let button of buttons) {
+    button.addEventListener('click', (/*don't put i in here! */) => {
+        let computerPlay;
+        let userPlay;
+                
+        if ( i < 6) {
+            if (button.id === "idrock") {   /* NOT 'this.id' */
+                userPlay = "ROCK";
+            }
+            else if (button.id === "idpaper") {
+                userPlay = "PAPER";
+            }
+            else userPlay = "SCISSORS";
+
+            computerPlay = getComputerChoice();
+        
+            /*game(userPlay, computerPlay);*/
+                    
+                console.log("GAME " + (i));
+                console.log(playRound(userPlay, computerPlay));
+                console.log(`SCORE: User - ${pscore},  Computer - ${cscore}`);
+                i++;
+        }
+        
+        let result;
+
+        if (i === 6) {
+            if (pscore >  cscore)
+                result = "USER WINS! " + pscore + " games to " + cscore +"."; 
+            else if (cscore > pscore) 
+                result = "COMPUTER WINS! " + cscore + " games to " + pscore +".";
+
+            else if (pscore ===1) 
+                result = "MATCH IS DRAWN! " + pscore + " GAME EACH.";
+            else
+                result = "MATCH IS DRAWN! " + pscore + " GAMES EACH.";
+    
+
+            console.log("   ");
+            console.log("MATCH COMPLETE!");
+            console.log(result);
+        }
     })
+    
 }
 
 function getComputerChoice() {
@@ -67,38 +112,7 @@ function playRound(userPlay, computerPlay) {
         }
         else {}
     }
-  /*  if (userPlay === "ROCK") {
-        if (computerPlay === "SCISSORS") {
-            gameResult = "User WINS!";
-            pscore++;
-        }
-        else if (computerPlay === "PAPER") {
-            gameResult = "Computer WINS!";
-            cscore++;
-        }
-    }
-
-    if (userPlay === "PAPER") {
-        if (computerPlay === "SCISSORS") {
-            gameResult = "Computer WINS!";
-            cscore++;
-        }
-        else if (computerPlay === "ROCK") {
-            gameResult = "User WINS!";
-            pscore++;
-        }
-    }
-    if (userPlay === "SCISSORS") {
-        if (computerPlay === "ROCK") {
-            gameResult = "Computer WINS!";
-            cscore++;
-        }
-        else if (computerPlay === "PAPER") {
-            gameResult = "User WINS!";
-            pscore++;
-        }
-    }
-    */
+ 
     return ("User plays: "+userPlay + ": Computer plays: " +computerPlay +" " + " --> " + gameResult);
 }
 
@@ -107,39 +121,12 @@ function playRound(userPlay, computerPlay) {
 //prompt user
 //const userPlay = prompt().toUpperCase();
 
-function game() {
-    let computerPlay;
-    let userPlay; 
-    let i = 0;
-
-    while (i <5) {
+function game(userPlay, computerPlay) {
     
-    computerPlay = getComputerChoice();
-    /*userPlay = prompt().toUpperCase();*/
-    userPlay = "ROCK";
-
-    console.log("GAME " + (i+1));
     console.log(playRound(userPlay, computerPlay));
-    console.log(`SCORE: User - ${pscore},  Computer - ${cscore}`);
-    i++;
-    }
+}
 
-    let result;
-    if (pscore >  cscore)
-        result = "USER WINS! " + pscore + " games to " + cscore +"."; 
-    else if (cscore > pscore) 
-        result = "COMPUTER WINS! " + cscore + " games to " + pscore +".";
-
-    else if (pscore ===1) 
-        result = "MATCH IS DRAWN! " + pscore + " GAME EACH.";
-    else
-        result = "MATCH IS DRAWN! " + pscore + " GAMES EACH.";
- 
-
-    console.log("   ");
-    console.log("MATCH COMPLETE!");
-    console.log(result);
-    }
+   
 
 
-game();
+/*game();*/
