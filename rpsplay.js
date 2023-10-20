@@ -9,6 +9,7 @@ let gameResult = "Choose a Button Below";
 
 let table = document.querySelector('table');
 let startButton = document.querySelector("#startbtn");
+let restart = document.querySelector('#restart');
 let showSelect = document.querySelector(".showselect");
 let toplines;
 
@@ -24,7 +25,7 @@ startButton.addEventListener('click', () => {
     
     toplines = showSelect.querySelectorAll('p');
     
-   toplines[1].textContent = gameResult; 
+   toplines[1].textContent = "Choose a Button Below";
     toplines[0].textContent = `ROUND  ${i}`;
     /*toplines[0].textContent = toplines[1].textContent;*/
    
@@ -39,6 +40,7 @@ for (let button of playButtons) {
                 
         if ( (cscore === 5) || (pscore === 5) ) {
             toplines[1].textContent = '';
+            
             return;
         }
        /* if (started === false) {
@@ -58,11 +60,12 @@ for (let button of playButtons) {
     
         /*game(userPlay, computerPlay);*/
 
-        makerow(userPlay, computerPlay, result);
+        
                 
         console.log("GAME " + (i));
         console.log(playRound(userPlay, computerPlay)[0]);
-        
+
+        makerow(userPlay, computerPlay, gameResult);        
         toplines[0].textContent = `ROUND  ${i}`;
         toplines[1].textContent = gameResult;
        
@@ -74,12 +77,14 @@ for (let button of playButtons) {
             showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "USER WINS! " + pscore + " games to " + cscore +".";
             result = "USER WINS! " + pscore + " games to " + cscore +"."; 
             toplines[1].textContent = '';
-            return alert('game over!');
+            restart.classList.toggle('notshow');
+            return;
         }
         else if (cscore === 5) {
             showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "COMPUTER WINS! " + cscore + " games to " + pscore +".";
             result = "COMPUTER WINS! " + cscore + " games to " + pscore +".";
             toplines[1].textContent = '';
+            restart.classList.toggle('notshow');
             return;
         }
 
@@ -137,7 +142,7 @@ function playRound(userPlay, computerPlay) {
     return (["User plays: "+userPlay + ": Computer plays: " +computerPlay +" " + " --> " + gameResult, gameResult]);
 }
 
-function makerow(userPlay, computerPlay, result){
+function makerow(userPlay, computerPlay, gameResult){
         let firstRow;
         let row = document.createElement('tr');
         let td1 = document.createElement('td');
@@ -153,7 +158,7 @@ function makerow(userPlay, computerPlay, result){
         td1.textContent = "Round " + i;
         td2.textContent = userPlay;
         td3.textContent = computerPlay;
-        td4.textContent = result;
+        td4.textContent = gameResult;
 
         if (i==1) {
             table.appendChild(row);

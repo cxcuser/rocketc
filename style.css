@@ -1,14 +1,25 @@
 
 
+
+* {
+    box-sizing:border-box;
+}
+
 th, td {
     border: 1px solid black;
+    background-color: wheat;
     }
+
+th {
+    background-color: orange;
+}
 .rpscontainer {
     width: 100vw;
 
   /*  display: flex;
     align-items: center; */
 }
+
 
 .btncontainer, .divstart, .showselect {
     width:50%;
@@ -22,7 +33,7 @@ th, td {
 
 
 .showselect {
-    height:100px;
+    min-height:100px;
     color:black;
     background-color: whitesmoke;
     padding-top: 3em;
@@ -47,8 +58,8 @@ table {
     height: 100px;
 }
 button {
-    background-color: #eee;
-    border: 2px solid black;
+    background-color: whitesmoke;
+    border: 2px solid blue;
     color:blue;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -56,6 +67,16 @@ button {
     padding: 1em;
     width: 100px;
     height: 100px;
+}
+
+#restart {
+    
+    background-color: whitesmoke;
+    border: 2px solid red;
+    border-radius: 20px;
+    min-width: 200px;
+    padding: 0;
+    height:50px;
 }
 
 #startbtn {
