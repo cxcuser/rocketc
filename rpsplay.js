@@ -1,16 +1,22 @@
 
+
+/*ADD A RESET BUTTON TO TAKE THE GAME BACK TO THE CONDITION BEFORE PRESSING
+THE START BUTTON. THIS MUST TEST IF THE PLAY AGAIN (RESTART) BUTTON IS DISPLAYED, 
+AND SET IT TO DISPLAY NONE IF IT IS. THIS IS NOT AT ALL NECESSARY FOR FUNCTIONALITY,
+BUT FEELS ALITTLE BIT MORE COMPLETE.
+*/
 let cscore = 0;
 let pscore = 0;
 let i = 1;
-let started = false;
-let gameResult = "Choose a Button Below";
-
+let started = false;    /* THIS IS NOT ACTUALLY USED TO CONTROL PROGRAM FLOW,*/
+let gameResult = '';    /* BECAUSE IT TURNED OUT TO BE UNNECESSARY.*/
 
 
 let table = document.querySelector('table');
 let startButton = document.querySelector("#startbtn");
 let restart = document.querySelector('#restart');
 let showSelect = document.querySelector(".showselect");
+let reset = document.querySelector('.reset');
 let toplines;
 
 let playButtons = document.querySelectorAll(".playbutton");
@@ -22,6 +28,7 @@ startButton.addEventListener('click', () => {
     divstart.classList.toggle("notshow");
     showSelect.classList.toggle("notshow");
     btncontainer.classList.toggle("notshow");
+    reset.classList.toggle("notshow");
     
     toplines = showSelect.querySelectorAll('p');
     
@@ -43,11 +50,7 @@ for (let button of playButtons) {
             
             return;
         }
-       /* if (started === false) {
-            return;
-        } */
-        
-        
+              
         if (button.id === "idrock") {   /* NOT 'this.id' */
             userPlay = "ROCK";
         }
@@ -59,9 +62,7 @@ for (let button of playButtons) {
         computerPlay = getComputerChoice();
     
         /*game(userPlay, computerPlay);*/
-
-        
-                
+              
         console.log("GAME " + (i));
         console.log(playRound(userPlay, computerPlay)[0]);
 
@@ -71,20 +72,21 @@ for (let button of playButtons) {
        
         console.log(`SCORE: User - ${pscore},  Computer - ${cscore}`);
         i++;
-        
-        
+                
         if (pscore === 5) {
-            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "USER WINS! " + pscore + " games to " + cscore +".";
-            result = "USER WINS! " + pscore + " games to " + cscore +"."; 
+            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "USER WINS " + pscore + " games to " + cscore +".";
+            result = "USER WINS " + pscore + " games to " + cscore +"."; 
             toplines[1].textContent = '';
             restart.classList.toggle('notshow');
+            
             return;
         }
         else if (cscore === 5) {
-            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "COMPUTER WINS! " + cscore + " games to " + pscore +".";
-            result = "COMPUTER WINS! " + cscore + " games to " + pscore +".";
+            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "COMPUTER WINS " + cscore + " games to " + pscore +".";
+            result = "COMPUTER WINS " + cscore + " games to " + pscore +".";
             toplines[1].textContent = '';
             restart.classList.toggle('notshow');
+            
             return;
         }
 
@@ -93,10 +95,8 @@ for (let button of playButtons) {
             console.log("MATCH COMPLETE!");
             console.log(result);
     });
-
         
-}
-    
+}  
 
 function getComputerChoice() {
 
@@ -104,10 +104,9 @@ function getComputerChoice() {
     let playSelect = ["ROCK", "PAPER", "SCISSORS"];
     
     //generate a randon number between 1 and 3, inclusive.
-    const num = Math.floor(Math.random() * 100)%3;
+    const num = Math.floor(Math.random() * 3);
     
     let computerPlay = playSelect[num];
-    
     return computerPlay;
 }
 
@@ -129,11 +128,11 @@ function playRound(userPlay, computerPlay) {
 
     function inptest(seq, inp) {
         if (inp === seq[0]) {
-            gameResult = "Computer WINS!";
+            gameResult = "Computer WINS";
             pscore++;
         }
         else if (inp === seq[2]) {
-            gameResult = "User WINS!";
+            gameResult = "User WINS";
             cscore++;
         }
         else {gameResult = "DRAWN GAME";}
@@ -143,6 +142,7 @@ function playRound(userPlay, computerPlay) {
 }
 
 function makerow(userPlay, computerPlay, gameResult){
+       
         let firstRow;
         let row = document.createElement('tr');
         let td1 = document.createElement('td');
@@ -170,8 +170,57 @@ function makerow(userPlay, computerPlay, gameResult){
 
 }
 
-//prompt user
-//const userPlay = prompt().toUpperCase();
+
+restart.addEventListener('click', () => {
+    
+   /* divstart.classList.toggle("notshow");
+    showSelect.classList.toggle("notshow");
+    btncontainer.classList.toggle("notshow"); */
+    restart.classList.toggle("notshow"); 
+    
+    let j =i-1;
+    while ( j > 0 ) {
+        table.removeChild(table.children[1]);
+        j--;
+    }
+
+    i = 1;      /* re-set variables to keep track of game progress */
+    cscore = 0;
+    pscore = 0;
+    
+    toplines = showSelect.querySelectorAll('p');
+    
+    toplines[1].textContent = "Choose a Button Below";  /* re-set instructions */
+    toplines[0].textContent = `ROUND  ${i}`;
+})
+
+reset.addEventListener('click', () => {     /* RESET is not needed for game functionality */
+                                            /* but it feels more complete to include it */
+    let j =i-1;
+    while ( j > 0 ) {
+        table.removeChild(table.children[1]);
+        j--;
+    }
+    i = 1;
+    cscore = 0;
+    pscore = 0;
+    
+    if (!restart.classList.contains("notshow")) {
+        restart.classList.add("notshow");
+    } /* toggle is not appropriate, as the 'Play Again' (restart) button
+        may or may not be visible when RESET is pressed */
+    
+    divstart.classList.toggle("notshow");   /* show start button */
+    showSelect.classList.toggle("notshow"); /* hide instruction lines/last result lines */ */
+    btncontainer.classList.toggle("notshow");   /* hide game-play buttons */
+    
+    reset.classList.toggle("notshow");  /* hide reset button */
+
+    toplines[1].textContent = "";
+    toplines[0].textContent = ``;
+   
+})
+
 
 function game(userPlay, computerPlay) {
     
