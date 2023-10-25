@@ -1,10 +1,7 @@
 
 
 /*ADD A RESET BUTTON TO TAKE THE GAME BACK TO THE CONDITION BEFORE PRESSING
-THE START BUTTON. THIS MUST TEST IF THE PLAY AGAIN (RESTART) BUTTON IS DISPLAYED, 
-AND SET IT TO DISPLAY NONE IF IT IS. THIS IS NOT AT ALL NECESSARY FOR FUNCTIONALITY,
-BUT FEELS ALITTLE BIT MORE COMPLETE.
-*/
+THE START BUTTON. */
 let cscore = 0;
 let pscore = 0;
 let i = 1;
@@ -129,11 +126,11 @@ function playRound(userPlay, computerPlay) {
     function inptest(seq, inp) {
         if (inp === seq[0]) {
             gameResult = "Computer WINS";
-            pscore++;
+            cscore++;
         }
         else if (inp === seq[2]) {
             gameResult = "User WINS";
-            cscore++;
+            pscore++;
         }
         else {gameResult = "DRAWN GAME";}
     }
@@ -211,7 +208,7 @@ reset.addEventListener('click', () => {     /* RESET is not needed for game func
         may or may not be visible when RESET is pressed */
     
     divstart.classList.toggle("notshow");   /* show start button */
-    showSelect.classList.toggle("notshow"); /* hide instruction lines/last result lines */ */
+    showSelect.classList.toggle("notshow"); /* hide instruction lines/last result lines */
     btncontainer.classList.toggle("notshow");   /* hide game-play buttons */
     
     reset.classList.toggle("notshow");  /* hide reset button */
