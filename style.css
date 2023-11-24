@@ -1,4 +1,19 @@
+/*
+CONVERT TO FLEX DESIGN;
 
+'MARGIN: 0 AUTO;' LINES WERE REMOVED.
+.RPSCONTAINER WAS CHANGED TO DISPLAY:FLEX;
+WITH FLEX-DIRECTION:COLUMN; AND ALIGN-ITEMS:CENTER;
+
+THE FOLLOWING WAS ALSO ADDED
+.btncontainer {
+    display:flex;
+    justify-content: center;
+    gap:10px;
+}
+
+
+*/
 
 
 * {
@@ -27,36 +42,46 @@ h1 {
     padding-bottom: 5vw;
     padding-top: 3vw;
 
-  /*  display: flex;
-    align-items: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
+.btncontainer {
+    display:flex;
+    justify-content: center;
+    gap:10px;
+}
 
-.btncontainer, .divstart, .showselect {
+.btncontainer button {
+    flex: 0 1 auto;
+}
+
+table, .btncontainer, .divstart, .showselect {
     width:50%;
-    margin: 0 auto; 
     text-align: center;
+/*    margin: 0 auto; 
+     */
 }
 
 .notshow {
     display: none;
 }
 
-
 .showselect {
     min-height:100px;
     color:black;
     background-color: whitesmoke;
-    padding-top: 3em;
+    padding: 2em 0.5em 1em 0.5em;
     border: 10px solid green;
     border-radius: 50px;
-    
-}
+ }
 
-table {
+/*table {
     width:50%;
     margin: 0 auto;    
-}
+}*/
 
 .blank {
     background-color: #eee;
@@ -132,12 +157,10 @@ button {
     cursor: pointer;
     background-color: rgb(186, 229, 243);
     border-color: rgb(0, 64, 0);
-    
-}
+ }
 
 button:hover {
     cursor: pointer;
     background-color: white;
     border-color: red;
-    
 }

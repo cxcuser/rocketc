@@ -71,7 +71,7 @@ for (let button of playButtons) {
         i++;
                 
         if (pscore === 5) {
-            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "USER WINS " + pscore + " games to " + cscore +".";
+            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "USER WINS " + pscore + " games to " + cscore +"."; 
             result = "USER WINS " + pscore + " games to " + cscore +"."; 
             toplines[1].textContent = '';
             restart.classList.toggle('notshow');
@@ -79,14 +79,14 @@ for (let button of playButtons) {
             return;
         }
         else if (cscore === 5) {
-            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "COMPUTER WINS " + cscore + " games to " + pscore +".";
+            showSelect.childNodes[1].textContent = "MATCH COMPLETE - " + "COMPUTER WINS " + cscore + " games to " + pscore +"."; 
             result = "COMPUTER WINS " + cscore + " games to " + pscore +".";
             toplines[1].textContent = '';
             restart.classList.toggle('notshow');
             
             return;
         }
-
+        /* Above, childNodes[1] is apparently the same as toplines[0]; unexpected */
 
             console.log("   ");
             console.log("MATCH COMPLETE!");
